@@ -15,7 +15,7 @@ void showMenu(void);
 void changeDefaultBoard(void);
 
 //Utworz domyslna plansze
-int **createBoard (int **board);
+int **createBoard ();
 
 //Pokaz plansze 
 void printBoard(int **board);

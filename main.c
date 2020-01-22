@@ -6,8 +6,8 @@ int main(){
     //Wywolania tymczasowe
     int **board;
 
-    createBoard(board);
-    changeDefaultBoard();
+    board = createBoard();
+    //changeDefaultBoard();
 
     printBoard(board);
 
