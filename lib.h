@@ -5,8 +5,8 @@
 
 //Pierwsze wersje są void typ void
 
-extern int defaultRowSize;
-extern int defaultColumnSize;
+extern int defaultColumn;
+extern int defaultRow;
 
 //Pokaz menu
 void showMenu(void);
