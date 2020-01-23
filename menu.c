@@ -4,15 +4,8 @@
 #include <menu.h>
 #include <stdlib.h>           
 
-void fail(char *msg) {
-    endwin();
-    puts(msg);
-    exit(EXIT_FAILURE);
-}
+int menu_ncurses(){
 
-int main(int argc, char **argv)
-{
-   
     char gamename[]="Connect 4";
     int szer, dlug; //wartosci dlugosci i szerokosci terminalu
 
@@ -74,6 +67,19 @@ int main(int argc, char **argv)
     getch();
 
     endwin();
+
+    return zaznacz;
+
+}
+
+int main(int argc, char **argv)
+{
+   int wybor;
+   wybor = menu_ncurses();
+
+   //test
+   printf("\n\n %d \n\n",wybor);
+    
 
     return 0;
 }
