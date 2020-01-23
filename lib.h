@@ -12,9 +12,6 @@ int rows;
 
 }Game;
 
-extern int defaultColumn;
-extern int defaultRow;
-
 //Pokaz menu
 void showMenu(void);
 

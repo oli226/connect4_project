@@ -6,13 +6,9 @@ int main(){
     //Wywolania tymczasowe
     
     Game game;
-    
-    //int **board;
+
     setDefaultBoard(&game);
     createBoard(&game);
-
-    //changeDefaultBoard();
-
 
     printBoard(&game);
 
