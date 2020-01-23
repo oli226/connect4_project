@@ -1,11 +1,12 @@
 #include "lib.h"
 
-int defaultColumn = 7; //ilość el w wierzu => kolumny
-int defaultRow = 6; // ilość el w kolumnie => wiersze
-
 //Funkcje
+void setDefaultBoard(Game *game){
+    game->columns = 7;
+    game->rows = 6;
+}
 
-void changeDefaultBoard(void){
+/*void changeDefaultBoard(void){
 
     printf("Domyślna liczba kolumn to 7. Podaj nową ilość kolumn:");
     scanf("%d", &defaultColumn);
@@ -13,72 +14,68 @@ void changeDefaultBoard(void){
     printf("Domyślna liczba wierszy to 6. Podaj nową ilość wierszy:");
     scanf("%d", &defaultRow);
     putchar('\n');
-}
+}*/
 
-int **createBoard(){
+void createBoard (Game *game){
 
-    int **board = (int**)malloc(defaultRow * sizeof(int*));
-    if (board == NULL){
+    game->board= (int**)malloc(game->rows * sizeof(int*));
+    if (game->board == NULL){
         perror("Error in malloc");
         exit (1);
     }
     
     int i;
 
-    for (i = 0; i < defaultRow; i++){
-        board[i] = (int*)malloc(defaultColumn * sizeof(int));
-        if(board[i] == NULL){
+    for (i = 0; i < game->rows; i++){
+        game->board[i] = (int*)malloc(game->columns * sizeof(int));
+        if(game->board[i] == NULL){
             perror("Error in second malloc");
             exit (1);
         }
     }
-
-    return board;
 }
 
-void printBoard(int **board){
-
-    //test vsalues
+void printBoard(Game *game){
 
     int i, j;
-    board[0][5] = 4;
-    for(i = 0; i<defaultRow; i++){
-        for (j= 0; j < defaultColumn; j++)
-        {
-            printf("%d ", board[i][j]);   
-        }
-    putchar('\n');
-}
 
     //Na podstawie obrazka z zadania z https://www.it2051229.com/cconn4.html
-    //Prawdopodobnie do zmiany
-    for (i = 0; i < defaultRow; i++) {
-            printf ("+");
-            for (j = 0; j < defaultColumn; j++)
-                printf("---+");
-            printf ("\n");
-            printf ("|");
-            for (j = 0; j < defaultColumn; j++)
-                printf("   |");
-            printf ("\n");
+    for (j = 0; j < game->columns; j++){
+            printf(" %d  ", j+1);
         }
 
-        printf ("+");
-        for (j = 0; j < defaultColumn; j++)
-            printf("---+");
-        printf ("\n");
+    printf ("\n");
 
-    // DODAĆ printowanie liczb pod kolumnami
+    for (i = 0; i < game->rows; i++) {
+        printf ("+");
+        for (j = 0; j < game->columns; j++){
+            printf("---+");
+        }
+        printf ("\n");
+        printf ("|");
+        for (j = 0; j < game->columns; j++){
+            printf(" %d |", game->board[i][j]);
+        }
+        printf ("\n");
+    }
+
+    printf ("+");
+    for (j = 0; j < game->columns; j++){
+        printf("---+");
+    }
+
+    printf ("\n");
 }
 
+void freeBoard(Game *game){
 
-void freeBoard(int **board){
+    //naprawić dealokację
 
     int i;
 
-    for (i = 0; i < defaultRow; i++){
-            free(board[i]);
+    for (i = 0; i < game->rows; i++){
+            free(game->board[i]);
         }
-    free(board);
-
+    free(game->board);
+    free(game);
 }

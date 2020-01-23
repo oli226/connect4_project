@@ -4,15 +4,20 @@ int main(){
 
 
     //Wywolania tymczasowe
-    int **board;
+    
+    Game game;
+    
+    //int **board;
+    setDefaultBoard(&game);
+    createBoard(&game);
 
-    board = createBoard();
     //changeDefaultBoard();
 
-    printBoard(board);
+
+    printBoard(&game);
 
     
-    freeBoard(board);
+    freeBoard(&game);
 
     return EXIT_SUCCESS;
 }
