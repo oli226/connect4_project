@@ -81,4 +81,5 @@ void freeBoard(Game *game){
         }
     free(game->board);
     free(game);
+    
 }
