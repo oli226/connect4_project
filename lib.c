@@ -54,6 +54,9 @@ void printBoard(Game *game){
         printf ("\n");
         printf ("|");
         for (j = 0; j < game->columns; j++){
+            if(game->board[i][j]==0)
+                printf("   |");
+            else
             printf(" %d |", game->board[i][j]);
         }
         printf ("\n");
