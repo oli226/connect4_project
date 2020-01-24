@@ -256,7 +256,7 @@ void freeBoard(Game *game){
     free(game);
 }
 
-int move(Game *game){
+void move(Game *game){
     int chooseColumn;
     int player=1;
     while(1){
