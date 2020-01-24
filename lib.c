@@ -4,6 +4,7 @@
 void setDefaultBoard(Game *game){
     game->columns = 7;
     game->rows = 6;
+    game->player = Player1;
 }
 
 /*void changeDefaultBoard(void){
@@ -65,6 +66,16 @@ void printBoard(Game *game){
     }
 
     printf ("\n");
+}
+
+void switchPlayers(Game *game){
+    if (game->player == Player1){
+        game->player = Player2;
+    }
+    else
+    {
+        game->player = Player1;
+    }
 }
 
 void freeBoard(Game *game){

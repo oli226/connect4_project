@@ -9,8 +9,11 @@ typedef struct Game {
 int **board;
 int columns;
 int rows;
+int player;
 
 }Game;
+
+enum Players {Player1 = 1, Player2 = 2};
 
 //Pokaz menu
 void showMenu(void);
@@ -29,6 +32,9 @@ void printBoard(Game *game);
 
 //Wrzuc krazek
 void move(void);
+
+//Zmiana gracza
+void switchPlayers(Game *game);
 
 //Sprawdzanie zwyciestwa
 void checkWin(void);
