@@ -9,11 +9,8 @@ typedef struct Game {
 int **board;
 int columns;
 int rows;
-int player;
 
 }Game;
-
-enum Players {Player1 = 1, Player2 = 2};
 
 //Pokaz menu
 void showMenu(void);
@@ -39,4 +36,14 @@ void switchPlayers(Game *game);
 //Sprawdzanie zwyciestwa
 void checkWin(void);
 
+//zapisuje backup kolumn i wierszy planszy;
+void getBackup(Game *game, Game *backup);
+
+//zapisuje plansze do backupu
+void setBackup(Game *game, Game *backup);
+
+//przywraca backup gry
+void restoreBackup(Game *game, Game *backup);
+
+//uwolnienie pamieci
 void freeBoard(Game *game);
