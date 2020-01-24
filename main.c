@@ -1,4 +1,5 @@
 #include "lib.h"
+#include "menu.h"
 
 int main(){
 
@@ -7,13 +8,14 @@ int main(){
     
     Game game;
 
+    //start_menu();
     setDefaultBoard(&game);
     changeDefaultBoard(&game);
     createBoard(&game);
 
     printBoard(&game);
 
-    move(&game);
+    makeMove(&game);
 
 
     freeBoard(&game);

@@ -1,12 +1,12 @@
 compiler = gcc
-dependencies = lib.h
-objects = main.o lib.o
+dependencies = lib.h menu.h
+objects = main.o lib.o menu.o
 
 %.o: %.c $(dependencies)
-	$(compiler) -c -o $@ $<
+	$(compiler) -c -o $@  $< -lncurses
 
 connect4: $(objects)
-	$(compiler) -o $@ $^
+	$(compiler) -o $@  $^ -lncurses
 
 .PHONY = clean
 

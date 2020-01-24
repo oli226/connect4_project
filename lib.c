@@ -228,7 +228,7 @@ int checkColumns(Game *game){
     return win;
 }
 
-void move(Game *game){
+void makeMove(Game *game){
     int chooseColumn;
     int player=1;
     int count=game->columns*game->rows;
@@ -323,6 +323,6 @@ void move(Game *game){
         }
     }
     
-    
 }
+
 
