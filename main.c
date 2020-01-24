@@ -12,7 +12,9 @@ int main(){
 
     printBoard(&game);
 
-    
+    move(&game);
+
+
     freeBoard(&game);
 
     return EXIT_SUCCESS;
