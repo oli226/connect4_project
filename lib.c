@@ -233,7 +233,7 @@ void move(Game *game){
     int player=1;
     int count=game->columns*game->rows;
     int win;
-    int backupCount = count;
+    int lastMove = 0;
 
     getBackup(game, &backup);
     createBoard(&backup);
@@ -255,8 +255,8 @@ void move(Game *game){
         printf("\nChoose number: ");
         scanf("%d",&chooseColumn);
         while(game->columns<chooseColumn || chooseColumn<=0){
-            if (chooseColumn == -1){
-                restoreBackup( game, &backup);
+            if (chooseColumn == -1 && lastMove != -1){
+                restoreBackup(game, &backup);
                 break;
             }
 
@@ -267,13 +267,9 @@ void move(Game *game){
         setBackup(game, &backup);
 
         if (chooseColumn == -1){
+
             if(count == game->columns*game->rows){
-                printf("\nCan not undo first move. Sorry :p\n");     
-                continue;           
-            }
-            else if(count != backupCount){
-                printf("\nYou already did this! :p\n");    
-                continue; 
+                printf("\nCan not undo first move. Sorry :p\n");
             }
             else{
                 printBoard(game);
@@ -283,10 +279,12 @@ void move(Game *game){
                     player=2;
                 else
                     player--;
-
-                continue;
             }
+            lastMove = chooseColumn;
+            continue;
         }
+
+        lastMove = chooseColumn;
 
         while(game->board[checkRow][chooseColumn-1]==1||game->board[checkRow][chooseColumn-1]==2){
             if(checkRow==0){
@@ -304,7 +302,6 @@ void move(Game *game){
             game->board[checkRow][chooseColumn-1]=player;
             printBoard(game);
             count--;
-            backupCount--;
             if(player==1) 
             player=2;
             else
