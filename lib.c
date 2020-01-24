@@ -101,22 +101,25 @@ void freeBoard(Game *game){
 int checkColumns(Game *game){
     int countColumnsP1=0;
     int countColumnsP2=0;
+    int countRowsP1=0;
+    int countRowsP2=0;
+
     int rows=game->rows-1;
     int columns=game->columns-1;
 
     int win;
 
-    //sprawdzanie ???
-  /*  for(rows; 0<=rows; rows--){                     //zle, rows od dolu pownnio byc><
+    //sprawdzanie poziome
+    for(rows=game->rows-1; 0<=rows; rows--){                     
         for(int i=0; i<=columns; i++){
             if(game->board[rows][i]==1)
             countColumnsP1++;
             else
             countColumnsP1=0;
-                if(countColumnsP1==4){
+            if(countColumnsP1==4){
                     win=1;
                     break;
-                }
+            }
 
             if(game->board[rows][i]==2)
             countColumnsP2++;
@@ -128,19 +131,34 @@ int checkColumns(Game *game){
                 }
 
         }
-        // if(game->board[rows][0]==1)
-        //     countColumnsP1++;
-        //         if(countColumnsP1==4){
-        //             win=1;
-        //             break;
-        //         }
+    }    
+    //sprawdzanie pionowe
+    for(int i=0; i<=columns; i++){                    
+        for(rows=game->rows-1; 0<=rows; rows--){
+            if(game->board[rows][i]==1)
+            countRowsP1++;
+            else
+            countRowsP1=0;
+            if(countRowsP1==4){
+                    win=1;
+                    break;
+            }
 
+            if(game->board[rows][i]==2)
+            countRowsP2++;
+            else
+            countRowsP2=0;
+                if(countRowsP2==4){
+                    win=2;
+                    break;
+                }
 
-        //sprawdzanie diagonalne w dol od lewej do prawej
-
+        }
         if(win==1||win==2)
         break;
-    }*/
+    }
+
+    
     //sprawdz ukosy od gory od lewej do prawej
     for (rows = 0; rows < game->rows - 3; rows++ ){
         for (columns = 0; columns < game->columns - 3; columns++){
@@ -159,6 +177,7 @@ int checkColumns(Game *game){
     }
 
     //sprawdz ukosy od gory od prawej do lewej
+    
     for (rows = 0; rows < game->rows - 3; rows++ ){
         for (columns = 3; columns < game->columns; columns++){
             int checkedElement = game->board[rows][columns];
@@ -190,9 +209,9 @@ void move(Game *game){
         int msg=0;
 
         if(player==1) 
-            printf("\nPlayer 1 turn. Choose number: ");
+            printf("\nPlayer 1 turn.\n");
         else
-            printf("\nPlayer 2 turn. Choose number: ");
+            printf("\nPlayer 2 turn.\n");
 
         printf("\nChoose number: ");
         scanf("%d",&chooseColumn);
