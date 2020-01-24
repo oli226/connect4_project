@@ -228,7 +228,7 @@ int checkColumns(Game *game){
     return win;
 }
 
-void move(Game *game){
+void makeMove(Game *game){
     int chooseColumn;
     int player=1;
     int count=game->columns*game->rows;
@@ -272,7 +272,12 @@ void move(Game *game){
                 continue;           
             }
             else if(count != backupCount){
-                printf("\nYou already did this! :p\n");    
+                printf("\nYou already did this! :p\n"); 
+                if(player==1)
+                    player=2;
+                else
+                    player--;
+  
                 continue; 
             }
             else{
@@ -326,6 +331,6 @@ void move(Game *game){
         }
     }
     
-    
 }
+
 
