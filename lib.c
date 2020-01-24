@@ -1,5 +1,7 @@
 #include "lib.h"
 
+Game backup;
+
 //Funkcje
 void setDefaultBoard(Game *game){
     game->columns = 7;
@@ -29,6 +31,34 @@ void changeDefaultBoard(Game *game){
 
     putchar('\n');
 }
+
+void getBackup(Game *game, Game *backup){
+    backup->columns = game->columns;
+    backup->rows = game->rows;
+}
+
+void setBackup(Game *game, Game *backup){
+
+    int i, j;
+
+    for (i = 0; i < game->rows; i++) {
+        for (j = 0; j < game->columns; j++){
+            backup->board[i][j] = game->board[i][j];
+        }
+    }
+}
+
+void restoreBackup(Game *game, Game *backup){
+
+    int i, j;
+
+    for (i = 0; i < backup->rows; i++) {
+        for (j = 0; j < backup->columns; j++){
+            game->board[i][j] = backup->board[i][j];
+        }
+    }
+}
+
 
 void createBoard (Game *game){
 
@@ -184,22 +214,60 @@ void move(Game *game){
     int player=1;
     int count=game->columns*game->rows;
     int win;
+    int backupCount = count;
+
+    getBackup(game, &backup);
+    createBoard(&backup);
 
     while(1){
         int checkRow=game->rows-1; 
         int msg=0;
 
-        if(player==1) 
+        if(player==1){
             printf("\nPlayer 1 turn. Choose number: ");
-        else
+            printf("\nType -1 to undo last players move.");
+        }
+        else{
             printf("\nPlayer 2 turn. Choose number: ");
+            printf("\nType -1 to undo last players move.");
+        }
 
         printf("\nChoose number: ");
         scanf("%d",&chooseColumn);
         while(game->columns<chooseColumn || chooseColumn<=0){
+            if (chooseColumn == -1){
+                restoreBackup( game, &backup);
+                break;
+            }
+
              printf("\nWrong number! Try again: ");
              scanf("%d",&chooseColumn);
          }
+        
+        setBackup(game, &backup);
+
+        if (chooseColumn == -1){
+            if(count == game->columns*game->rows){
+                printf("\nCan not undo first move. Sorry :p\n");     
+                continue;           
+            }
+            else if(count != backupCount){
+                printf("\nYou already did this! :p\n");    
+                continue; 
+            }
+            else{
+                printBoard(game);
+                count++;
+
+                if(player==1)
+                    player=2;
+                else
+                    player--;
+
+                continue;
+            }
+        }
+
         while(game->board[checkRow][chooseColumn-1]==1||game->board[checkRow][chooseColumn-1]==2){
             if(checkRow==0){
                 msg=1;
@@ -216,6 +284,7 @@ void move(Game *game){
             game->board[checkRow][chooseColumn-1]=player;
             printBoard(game);
             count--;
+            backupCount--;
             if(player==1) 
             player=2;
             else
