@@ -89,9 +89,11 @@ int checkColumns(Game *game){
     int countColumnsP2=0;
     int rows=game->rows-1;
     int columns=game->columns-1;
-    
+
     int win;
-    for(rows; 0<=rows; rows--){                     //zle, rows od dolu pownnio byc><
+
+    //sprawdzanie ???
+  /*  for(rows; 0<=rows; rows--){                     //zle, rows od dolu pownnio byc><
         for(int i=0; i<=columns; i++){
             if(game->board[rows][i]==1)
             countColumnsP1++;
@@ -101,7 +103,7 @@ int checkColumns(Game *game){
                     win=1;
                     break;
                 }
-                
+
             if(game->board[rows][i]==2)
             countColumnsP2++;
             else
@@ -109,8 +111,8 @@ int checkColumns(Game *game){
                 if(countColumnsP2==4){
                     win=2;
                     break;
-                }    
-            
+                }
+
         }
         // if(game->board[rows][0]==1)
         //     countColumnsP1++;
@@ -118,9 +120,48 @@ int checkColumns(Game *game){
         //             win=1;
         //             break;
         //         }
+
+
+        //sprawdzanie diagonalne w dol od lewej do prawej
+
         if(win==1||win==2)
         break;
+    }*/
+    //sprawdz ukosy od gory od lewej do prawej
+    for (rows = 0; rows < game->rows - 3; rows++ ){
+        for (columns = 0; columns < game->columns - 3; columns++){
+            int checkedElement = game->board[rows][columns];
+            if((checkedElement == game->board[rows+1][columns+1] && checkedElement == game->board[rows+2][columns+2] && checkedElement == game->board[rows+3][columns+3])){
+                if (checkedElement == 1){
+                    win = 1;
+                    break;
+                }
+                else if (checkedElement == 2){
+                    win = 2;
+                    break;
+                }
+            }
+        }
     }
+
+    //sprawdz ukosy od gory od prawej do lewej
+    for (rows = 0; rows < game->rows - 3; rows++ ){
+        for (columns = 3; columns < game->columns; columns++){
+            int checkedElement = game->board[rows][columns];
+            if((checkedElement == game->board[rows+1][columns-1] && checkedElement == game->board[rows+2][columns-2] && checkedElement == game->board[rows+3][columns-3])){
+                if (checkedElement == 1){
+                    win = 1;
+                    break;
+                }
+                else if (checkedElement == 2){
+                    win = 2;
+                    break;
+                }
+            }
+        }
+    }
+
+
     return win;
 }
 
@@ -145,8 +186,8 @@ void move(Game *game){
                 break;
             }
             checkRow--;
-        
         }
+
         if(msg==1){
             printBoard(game);
             printf("\nThis column is full, sorry! Choose another one. :)\n");
@@ -160,9 +201,6 @@ void move(Game *game){
             else
             player--;
         }
-    
-        
-    
     
         if(count==0){
             printf("===========================\nIt seems that we got draw!\n===========================\n");
