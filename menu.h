@@ -7,3 +7,5 @@
 
 //inicjalizacja menu
 int start_menu();
+
+//void highscores();
