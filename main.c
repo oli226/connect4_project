@@ -3,22 +3,40 @@
 
 int main(){
 
-
+    int option;
     //Wywolania tymczasowe
     
     Game game;
 
-    //start_menu();
-    setDefaultBoard(&game);
-    changeDefaultBoard(&game);
-    createBoard(&game);
+    option=start_menu();
 
-    printBoard(&game);
+    switch (option)
+    {
+    case 0:
 
-    makeMove(&game);
+        setDefaultBoard(&game);
+        createBoard(&game);
+        printBoard(&game);
+        makeMove(&game);
+        freeBoard(&game);
+        break;
+    
+    case 1:
+        setDefaultBoard(&game);
+        changeDefaultBoard(&game);
+        createBoard(&game);
+        printBoard(&game);
+        makeMove(&game);
+        freeBoard(&game);
+        break;
+    case 2:
+        //highscores();
+        break;
+    case 3:
+        break;
+    }
+    
 
-
-    freeBoard(&game);
 
     return EXIT_SUCCESS;
 }
