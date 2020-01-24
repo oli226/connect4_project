@@ -22,7 +22,7 @@ void showMenu(void);
 void setDefaultBoard(Game *game);
 
 //Zmien domyslny rozmiar planszy
-//void changeDefaultBoard(void);
+void changeDefaultBoard(Game *game);
 
 //Utworz domyslna plansze
 void createBoard (Game *game);

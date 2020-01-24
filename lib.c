@@ -6,15 +6,29 @@ void setDefaultBoard(Game *game){
     game->rows = 6;
 }
 
-/*void changeDefaultBoard(void){
+void changeDefaultBoard(Game *game){
 
-    printf("Domyślna liczba kolumn to 7. Podaj nową ilość kolumn:");
-    scanf("%d", &defaultColumn);
+    printf("Default (minimal) values of columns is 7. Enter new amount of columns:");
+
+    do{
+    scanf("%d", &game->columns);
+    if (game->columns < 7){
+        printf("Wrong value. Please enter number of columns again!");
+        }
+    }while (game->columns < 7);
+
     putchar('\n');
-    printf("Domyślna liczba wierszy to 6. Podaj nową ilość wierszy:");
-    scanf("%d", &defaultRow);
+    printf("Default (minimal) value of rows is 6. Enter new amount of rows:");
+
+    do{
+        if (game->columns < 7){
+            printf("Wrong value. Please enter number of rows again!");
+        }
+        scanf("%d", &game->rows);
+    }while (game->rows < 6);
+
     putchar('\n');
-}*/
+}
 
 void createBoard (Game *game){
 

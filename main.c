@@ -8,6 +8,7 @@ int main(){
     Game game;
 
     setDefaultBoard(&game);
+    changeDefaultBoard(&game);
     createBoard(&game);
 
     printBoard(&game);
