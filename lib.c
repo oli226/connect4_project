@@ -174,6 +174,12 @@ void move(Game *game){
     while(1){
         int checkRow=game->rows-1; 
         int msg=0;
+
+        if(player==1) 
+            printf("\nPlayer 1 turn. Choose number: ");
+        else
+            printf("\nPlayer 2 turn. Choose number: ");
+
         printf("\nChoose number: ");
         scanf("%d",&chooseColumn);
         while(game->columns<chooseColumn || chooseColumn<=0){
