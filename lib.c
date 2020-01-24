@@ -100,8 +100,18 @@ void printBoard(Game *game){
         for (j = 0; j < game->columns; j++){
             if(game->board[i][j]==0)
                 printf("   |");
-            else 
-            printf(" %d |", game->board[i][j]);
+            else if(game->board[i][j]==1){
+            printf("\033[0;34m"); 
+            printf(" O "); 
+            printf("\033[0m");
+            printf("|");
+            }
+            else if(game->board[i][j]==2){
+            printf("\033[0;31m"); 
+            printf(" O "); 
+            printf("\033[0m");
+            printf("|");
+            }
         }
         printf ("\n");
     }
