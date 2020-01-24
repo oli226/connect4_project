@@ -87,13 +87,14 @@ void freeBoard(Game *game){
 void move(Game *game){
     int chooseColumn;
     int player=1;
+    int count=game->columns*game->rows;
     while(1){
     int checkRow=game->rows-1; 
     int msg=0;
     printf("\nChoose number: ");
     scanf("%d",&chooseColumn);
-    while(game->columns<chooseColumn && chooseColumn>0){
-        printf("\nWrong number! Try again: %d",game->columns);
+    while(game->columns<chooseColumn || chooseColumn<=0){
+        printf("\nWrong number! Try again: ");
         scanf("%d",&chooseColumn);
     }
     while(game->board[checkRow][chooseColumn-1]==1||game->board[checkRow][chooseColumn-1]==2){
@@ -104,15 +105,28 @@ void move(Game *game){
         checkRow--;
         
     }
-    game->board[checkRow][chooseColumn-1]=player;
+    if(msg==1){
     printBoard(game);
-    if(msg==1)
     printf("\nThis column is full, sorry! Choose another one. :)\n");
+    }
+    else{
+        game->board[checkRow][chooseColumn-1]=player;
+    printBoard(game);
+    count--;
+    }
+    
     if(player==1)
         player=2;
     else
         player--;
+    
+    
+    if(count==0){
+        printf("===========================\nIt seems that we got draw!\n===========================\n");
+        break;
     }
+    }
+    
     
 }
 
