@@ -269,17 +269,7 @@ void makeMove(Game *game){
         if (chooseColumn == -1){
 
             if(count == game->columns*game->rows){
-                printf("\nCan not undo first move. Sorry :p\n");     
-                continue;           
-            }
-            else if(count != backupCount){
-                printf("\nYou already did this! :p\n"); 
-                if(player==1)
-                    player=2;
-                else
-                    player--;
-  
-                continue; 
+                printf("\nCan not undo first move. Sorry :p\n");
             }
             else{
                 printBoard(game);
