@@ -31,7 +31,7 @@ void createBoard (Game *game);
 void printBoard(Game *game);
 
 //Wrzuc krazek
-void move(void);
+void move(Game *game);
 
 //Zmiana gracza
 void switchPlayers(Game *game);
