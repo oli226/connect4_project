@@ -28,7 +28,7 @@ void createBoard (Game *game);
 void printBoard(Game *game);
 
 //Wrzuc krazek
-void move(Game *game);
+void makeMove(Game *game);
 
 //Zmiana gracza
 void switchPlayers(Game *game);
@@ -47,3 +47,5 @@ void restoreBackup(Game *game, Game *backup);
 
 //uwolnienie pamieci
 void freeBoard(Game *game);
+
+
