@@ -101,7 +101,7 @@ void printBoard(Game *game){
             if(game->board[i][j]==0)
                 printf("   |");
             else if(game->board[i][j]==1){
-            printf("\033[0;34m"); 
+            printf("\033[0;32m"); 
             printf(" O "); 
             printf("\033[0m");
             printf("|");
