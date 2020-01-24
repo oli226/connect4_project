@@ -56,7 +56,7 @@ void printBoard(Game *game){
         for (j = 0; j < game->columns; j++){
             if(game->board[i][j]==0)
                 printf("   |");
-            else
+            else 
             printf(" %d |", game->board[i][j]);
         }
         printf ("\n");
@@ -68,6 +68,7 @@ void printBoard(Game *game){
     }
 
     printf ("\n");
+    
 }
 
 void freeBoard(Game *game){
@@ -81,5 +82,23 @@ void freeBoard(Game *game){
         }
     free(game->board);
     free(game);
-    
+}
+
+int move(Game *game){
+    int chooseColumn;
+    while(1){
+    int checkRow=game->rows-1; 
+    printf("\nChoose number: ");
+    scanf("%d",&chooseColumn);
+    while(game->columns<chooseColumn && chooseColumn>0){
+        printf("\nWrong number! Try again: %d",game->columns);
+        scanf("%d",&chooseColumn);
+    }
+    while(game->board[checkRow][chooseColumn-1]==1){
+        checkRow--;
+    }
+    game->board[checkRow][chooseColumn-1]=1;
+    printBoard(game);
+    }
+
 }
