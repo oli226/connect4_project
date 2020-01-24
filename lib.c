@@ -159,8 +159,9 @@ int checkColumns(Game *game){
                     win=2;
                     break;
                 }
-
         }
+            countColumnsP1=0;
+            countColumnsP2=0;
     }    
     //sprawdzanie pionowe
     for(int i=0; i<=columns; i++){                    
@@ -184,9 +185,63 @@ int checkColumns(Game *game){
                 }
 
         }
+        countRowsP1=0;
+        countRowsP2=0;
+        if(win==1||win==2)
+        break;
+    }//sprawdzanie poziome
+    for(rows=game->rows-1; 0<=rows; rows--){                     
+        for(int i=0; i<=columns; i++){
+            if(game->board[rows][i]==1)
+            countColumnsP1++;
+            else
+            countColumnsP1=0;
+            if(countColumnsP1==4){
+                    win=1;
+                    break;
+            }
+
+            if(game->board[rows][i]==2)
+            countColumnsP2++;
+            else
+            countColumnsP2=0;
+                if(countColumnsP2==4){
+                    win=2;
+                    break;
+                }
+        }
+            countColumnsP1=0;
+            countColumnsP2=0;
+    }    
+    //sprawdzanie pionowe
+    for(int i=0; i<=columns; i++){                    
+        for(rows=game->rows-1; 0<=rows; rows--){
+            if(game->board[rows][i]==1)
+            countRowsP1++;
+            else
+            countRowsP1=0;
+            if(countRowsP1==4){
+                    win=1;
+                    break;
+            }
+
+            if(game->board[rows][i]==2)
+            countRowsP2++;
+            else
+            countRowsP2=0;
+                if(countRowsP2==4){
+                    win=2;
+                    break;
+                }
+
+        }
+        countRowsP1=0;
+        countRowsP2=0;
         if(win==1||win==2)
         break;
     }
+
+
 
     
     //sprawdz ukosy od gory od lewej do prawej
