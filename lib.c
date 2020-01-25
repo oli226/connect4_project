@@ -9,12 +9,13 @@ void setDefaultBoard(Game *game){
 }
 
 void changeDefaultBoard(Game *game){
-    char next;
+    //char next;
 
-    printf("Default (minimal) values of columns is 7. Enter new amount of columns: ");
+    printf("Default (minimal) values of columns is 7 and maximum 12. Enter new amount of columns: ");
 
-    while(1){
-        if (scanf("%d", &game->columns) < 0 || (game->columns < 7 && game->columns > 12) || (( next = getchar()) != EOF && next != '\n')) { 
+    /* //check, errors
+	while(1){
+        if (scanf("%d", &game->columns) == 7 || (game->columns < 7 && game->columns > 12) || (( next = getchar()) != EOF && next != '\n')) { 
                 clearerr(stdin);
                 do
                     next = getchar();
@@ -24,21 +25,22 @@ void changeDefaultBoard(Game *game){
             } else {
                 break;
         }
-    } 
+    } */
 
-    /* do{
+     do{
     scanf("%d", &game->columns);
-    if (game->columns < 7){
+    if (game->columns < 7 || game->columns > 12){
         printf("Wrong value. Please enter number of columns again: ");
         }
-    }while (game->columns < 7);*/
+    }while (game->columns < 7 || game->columns > 12);
 
     putchar('\n');
-    printf("Default (minimal) value of rows is 6. Enter new amount of rows: ");
+    printf("Default (minimal) value of rows is 6 and maximum 12. Enter new amount of rows: ");
 
 
 
-    while(1){
+    /* //check, errors
+	while(1){
         if (scanf("%d", &game->rows) < 0 || (game->rows < 6 && game->rows > 12) || (( next = getchar()) != EOF && next != '\n')) { 
                 clearerr(stdin);
                 do
@@ -50,14 +52,14 @@ void changeDefaultBoard(Game *game){
             else {
                 break;
         }
-    } 
-/*
+    } */
+
     do{
         scanf("%d", &game->rows);
-        if (game->rows < 6){
+        if (game->rows < 6 || game->rows > 12){
             printf("Wrong value. Please enter number of rows again: ");
         }
-    }while (game->rows < 6);*/
+    }while (game->rows < 6 || game->rows > 12);
 
     putchar('\n');
 }
@@ -349,7 +351,7 @@ void makeMove(Game *game){
 
         printf("\nChoose number: ");
 
-        while(1){
+        /*while(1){
             if (scanf("%d", &chooseColumn) < 0 || (( next = getchar()) != EOF && next != '\n')) { 
                     clearerr(stdin);
                     do
@@ -361,9 +363,9 @@ void makeMove(Game *game){
                 else {
                     break;
             }
-        }
+        }*/
 
-        //scanf("%d",&chooseColumn);
+        scanf("%d",&chooseColumn);
 
 
 
@@ -375,7 +377,7 @@ void makeMove(Game *game){
 
              printf("\nWrong number! Try again: ");
 
-            while(1){
+            /*while(1){
                 if (scanf("%d", &chooseColumn) < 0 || (( next = getchar()) != EOF && next != '\n')) { 
                         clearerr(stdin);
                         do
@@ -387,8 +389,8 @@ void makeMove(Game *game){
                     else {
                         break;
                 }
-            }
-            // scanf("%d",&chooseColumn);
+            }*/
+             scanf("%d",&chooseColumn);
 
         }
         
