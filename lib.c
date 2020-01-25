@@ -14,7 +14,7 @@ void changeDefaultBoard(Game *game){
     printf("Default (minimal) values of columns is 7. Enter new amount of columns: ");
 
     while(1){
-        if (scanf("%d", &game->columns) < 0 || game->columns < 7 || (( next = getchar()) != EOF && next != '\n')) { 
+        if (scanf("%d", &game->columns) < 0 || (game->columns < 7 && game->columns > 12) || (( next = getchar()) != EOF && next != '\n')) { 
                 clearerr(stdin);
                 do
                     next = getchar();
@@ -39,7 +39,7 @@ void changeDefaultBoard(Game *game){
 
 
     while(1){
-        if (scanf("%d", &game->rows) < 0 || game->rows < 6 || (( next = getchar()) != EOF && next != '\n')) { 
+        if (scanf("%d", &game->rows) < 0 || (game->rows < 6 && game->rows > 12) || (( next = getchar()) != EOF && next != '\n')) { 
                 clearerr(stdin);
                 do
                     next = getchar();
